@@ -1,0 +1,17 @@
+[Unit]
+Description=nginx OCSP fix for %I
+Requires=nginx.service
+After=nginx.service
+BindsTo=nginx.service
+PartOf=nginx.service
+
+[Service]
+Type=simple
+RemainAfterExit=true
+Restart=always
+RestartSec=5s
+ExecStart=/bin/bash /etc/systemd/system/nginx.service.d/ocsp.sh %i
+
+[Install]
+WantedBy=nginx.service
+
